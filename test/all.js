@@ -66,16 +66,17 @@ test('.clear() empties out all channels', function () {
   ok(JSON.stringify(Crier.chdir) === '{}');
 });
 
-/*test('.pub() posts messages in a way that subscribers can get them', function () {
+test('.pub() posts messages in a way that subscribers can get them', function (assert) {
   var done = assert.async();
-  Crier.sub('testpub', function (channel, data1, data2, data3, data4) {
+
+  Crier.sub('testpub', function (channel, data1, data2, data3, data4, data5) {
     ok(data1 === 3.14);
     ok(data2 === 'test');
     ok(data3 === false);
-    ok(data4 === {a: 5});
-    ok(data5 === [1, 2]);
+    ok(JSON.stringify(data4) === JSON.stringify({a: 5}));
+    ok(JSON.stringify(data5) === JSON.stringify([1, 2]));
     done();
   });
 
-  Criar.pub('testpub', 3.14, 'test', false, {a: 5}, [1,2]);
-});*/
+  Crier.pub('testpub', 3.14, 'test', false, {a: 5}, [1,2]);
+});

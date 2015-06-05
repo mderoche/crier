@@ -3,7 +3,7 @@
  *  Copyright (c) 2015 Mike Deroche
  *  Licensed MIT
  */
-(function (root) {
+var Crier = (function (root) {
 
   /**
    * Polyfill for Array.forEach() (shortened)
@@ -63,6 +63,11 @@
    * Unsubscribe from this channel
    */
   Channel.prototype.unsub = function (fnId) {
+    if (!fnId) {
+      this.clear();
+      return;
+    }
+
     var idx = this.subIndex(fnId);
     if (!!~idx) {
       this.subs.splice(idx, 1);
@@ -99,6 +104,19 @@
    */
   var Crier = function () {
     this.chdir = {};
+  };
+
+  /**
+   * Gets the list of current channels registered to the crier as an array
+   */
+  Crier.prototype.channelsAsArray = function () {
+    var res = [];
+
+    for (var c in this.chdir) {
+      res.push(this.chdir[c]);
+    }
+
+    return res;
   };
 
   /**
@@ -175,17 +193,14 @@
   };
 
   /**
-   * Clear all subscribers from channel(s)
+   * Clear channels (and subscribers) from this crier
    */
   Crier.prototype.clear = function (channels) {
-    forEach(this.channels(channels), function (channel) {
-      channel.clear();
+    forEach(this.channels(channels || /.*/), function (channel) {
+      delete this.chdir[channel.name];
     }, this);
   };
 
-  // create a crier
-  var crier = new Crier();
-
-  // expose crier to the global root
-  root.Crier = crier;
+  // create a Crier
+  return new Crier();
 })(window);

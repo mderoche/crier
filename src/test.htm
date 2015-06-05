@@ -2,15 +2,15 @@
 
 <script>
 
-  Crier.sub('channel1', function (channel, a, b) {
+  var c = Crier.newInstance();
+  console.log(c);
+
+
+  c.sub('channel1', function (channel, a, b) {
     console.log(channel + ' fired: ', a, b);
   });
 
-  Crier.sub('channel2', function (channel, a, b) {
-    console.log(channel + ' fired: ', a, b);
-  });
-
-  Crier.pub(/channel.*/, 1, 2);
+  c.pub('channel1', 1,2);
 
 
 </script>
