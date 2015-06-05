@@ -1,0 +1,16 @@
+<script src="crier.js"></script>
+
+<script>
+
+  Crier.sub('channel1', function (channel, a, b) {
+    console.log(channel + ' fired: ', a, b);
+  });
+
+  Crier.sub('channel2', function (channel, a, b) {
+    console.log(channel + ' fired: ', a, b);
+  });
+
+  Crier.pub(/channel.*/, 1, 2);
+
+
+</script>
