@@ -3,7 +3,15 @@
  *  Copyright (c) 2015 Mike Deroche
  *  Licensed MIT
  */
-var Crier = (function (root) {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.Crier = factory();
+  }
+}(this, function () {
 
   /**
    * Polyfill for Array.forEach() (shortened)
@@ -211,6 +219,5 @@ var Crier = (function (root) {
     }, this);
   };
 
-  // create a Crier
   return new Crier();
-})(window);
+}));
