@@ -21,13 +21,13 @@
         <div class="col-md-4">
           <div class="downloads-title"><img src="images/bower.a4609e32.png"> Bower</div>
           <div class="downloads-link">
-            <pre>bower install crierjs</pre>
+            <pre>bower install crier</pre>
           </div>
         </div>
         <div class="col-md-4">
           <div class="downloads-title"><img src="images/npm.67aa20b8.png">NPM</div>
           <div class="downloads-link">
-            <pre>npm install crierjs</pre>
+            <pre>npm install crier</pre>
           </div>
         </div>
       </div>
@@ -75,7 +75,7 @@ Crier.pub('channel-1', 2015, 'foo');
     
     <h2>Examples</h2>
     <section class="examples">
-      <h3>Basic Usage</h3>
+      <h4 class="title">Basic Usage</h4>
       <div hljs>// subscribe to channel ch-1
 Crier.sub('ch-1', function (ch, a, b, c, d, e) {
   console.log('channel: ', ch);
@@ -95,7 +95,7 @@ console.log(Crier.channelsAsArray());
 // unsubscribe sub-1 from ch-1
 Crier.unsub('ch-1', 'sub-1');</div>
 
-      <h3>Publish and Subscribe to Multiple Channels</h3>
+      <h4 class="title">Publish and Subscribe to Multiple Channels</h4>
       <div hljs>// subscribe to ch-1
 Crier.sub('ch-1', function (ch, data) {
   console.log(data);
@@ -114,7 +114,7 @@ Crier.sub(/ch-(.*)/, function (ch, data) {
 // publish to both ch-1 and ch-2
 Crier.pub(/ch-(.*)/, 'some extremely interesting data');</div>
 
-      <h3>Create a New Crier Instance</h3>
+      <h4 class="title">Create a New Crier Instance</h4>
       <div hljs>// creates a new, encapsulated instance of Crier
 var c = Crier.newInstance();
 
