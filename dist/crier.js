@@ -1,5 +1,5 @@
 /*!
- *  Crier - v1.0.0
+ *  CrierJS - v1.0.0
  *  Copyright (c) 2015 Mike Deroche
  *  Licensed MIT
  */

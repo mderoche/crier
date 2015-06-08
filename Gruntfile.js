@@ -12,17 +12,17 @@ module.exports = function(grunt) {
         src: [
           'src/*.js'
         ],
-        dest: 'dist/<%= pkg.name.replace(".js", "") %>.js'
+        dest: 'dist/crier.js'
       }
     },
 
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name.replace(".js", "") %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        banner: '/*! CrierJS <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
       dist: {
         files: {
-          'dist/<%= pkg.name.replace(".js", "") %>.min.js': ['<%= concat.dist.dest %>']
+          'dist/crier.min.js': ['<%= concat.dist.dest %>']
         }
       }
     },
