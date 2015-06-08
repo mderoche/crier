@@ -47,8 +47,23 @@ module.exports = function(grunt) {
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['concat', 'jshint', 'qunit']
+    },
+    
+    'gh-pages': {
+      'gh-pages': {
+        options: {
+          base: 'dist'
+        },
+        src: ['**']
+      },
+      
+      'gh-pages': {
+        options: {
+          base: 'site/dist'
+        },
+        src: ['**']
+      }
     }
-
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -56,8 +71,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
   grunt.registerTask('test', ['jshint', 'qunit']);
   grunt.registerTask('default', ['concat', 'jshint', 'qunit', 'uglify']);
+  grunt.registerTask('publish', ['concat', 'qunit', 'uglify', 'gh-pages']);
 
 };

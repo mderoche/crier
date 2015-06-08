@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>What?</h2>
+    <section>
+      <strong>CrierJS</strong> is a non-convoluded publish-subscription system for vanilla JavaScript and NodeJS.  <strong>Subscribers</strong> hook into a channel
+      and wait for any sort of data to get thrown onto it; <strong>publishers</strong> throw data onto channels that subscribers are (maybe) watching.  With this model,
+      the publishers and subscribers aren't friends&mdash;in fact, they don't even know that the other exists (promoting <em>loose coupling</em> and <em>scalability</em>).
+    </section>
+
+    <h2>Download</h2>
+    <section>
+      
+    </section>
+    
+    <h2>Quick Glance</h2>
+    <section>
+      <div hljs>Crier.sub('channel-1', function (ch, a, b) {
+  console.log('channel ' + ch + ' got data ', a, b);
+});
+
+
+Crier.pub('channel-1', 2015, 'foo');
+// "channel channel-1 got data 2015 foo"</div>
+    </section>
+    
+    <h2>Methods</h2>
+    <section>
+      <div class="method" ng-repeat="method in methods">
+        <h4><samp><strong>{{method.signature}}</strong></samp></h4>
+        <div>
+          <div class="description" ng-bind-html="method.description"></div>
+          <table class="table table-condensed params">
+            <tr ng-repeat="param in method.params">
+              <td class="params-name"><kbd>{{param.name}}</kbd></td>
+              <td class="params-types">
+                <span class="label label-primary" ng-if="param.types.string">String</span>
+                <span class="label label-success" ng-if="param.types.number">Number</span>
+                <span class="label label-danger" ng-if="param.types.regexp">RegExp</span>
+                <span class="label label-warning" ng-if="param.types.function">Function</span>
+                <span class="label label-info" ng-if="param.types.boolean">Boolean</span>
+                <span class="label label-default" ng-if="param.types.any">Any</span>
+              </td>
+              <td class="params-description">{{param.description}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+      
+    <!--
+      <p>
+        Subscribes to the given <code>channels</code> with a handler function <code>fn</code>.  It's aliased with an optional <code>id</code>.
+      </p>
+      
+      <h4>.pub(channels, data1, data2, ..., dataN)</h4>
+      <p>
+        Publishes a set of data to the given <code>channels</code>.
+      </p>
+      
+      <h4>.unsub(channels, fnId)</h4>
+      <p>
+        Unsubscribes the given subscriber as indicated by the handler function or alias id as <code>fnId</code>.
+      </p>-->
+  </div>
+</div>

@@ -1,0 +1,46 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+body {
+  padding: 0;
+  font-family: 'Open Sans', Arial, 'Times New Roman'
+}
+
+.jumbotron {
+  text-align: center;
+  background-color: #42BE42;
+  color: white;
+}
+
+section {
+  padding-left: 20px;
+}
+
+.hljs {
+  background: transparent !important;
+  padding: 0px !important;
+}
+
+.method {
+  margin-bottom: 10px;
+
+  &>div {
+    padding-left: 20px;
+  }
+
+  .params {
+    margin-top: 10px;
+  
+    .params-name {
+      width: 120px;
+    }
+    
+    .params-types {
+      width: 120px;
+    }
+  }
+}

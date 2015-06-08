@@ -3,7 +3,15 @@
  *  Copyright (c) 2015 Mike Deroche
  *  Licensed MIT
  */
-var Crier = (function (root) {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.Crier = factory();
+  }
+}(this, function () {
 
   /**
    * Polyfill for Array.forEach() (shortened)
@@ -107,6 +115,16 @@ var Crier = (function (root) {
   };
 
   /**
+   * Creates a new instance of a Crier.  kind of a weird thing to have it as
+   * a method of another Crier, but the tradeoff is that the user doesn'that
+   * need to instantiate one if they just need to use a single instance.
+   */
+  Crier.prototype.newInstance = function () {
+    return new Crier();
+  };
+
+
+  /**
    * Gets the list of current channels registered to the crier as an array
    */
   Crier.prototype.channelsAsArray = function () {
@@ -201,6 +219,13 @@ var Crier = (function (root) {
     }, this);
   };
 
-  // create a Crier
   return new Crier();
-})(window);
+}));
+
+var Crier = require('./crier.js');
+
+Crier.sub('channel1', function (channel, a, b) {
+  console.log(channel + ' fired: ', a, b);
+});
+
+Crier.pub('channel1', 1,2);
