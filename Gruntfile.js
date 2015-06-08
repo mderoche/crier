@@ -49,6 +49,17 @@ module.exports = function(grunt) {
       tasks: ['concat', 'jshint', 'qunit']
     },
     
+    copy: {
+      sitelibs: {
+        files: [{
+          expand: true,
+          cwd: '.',
+          dest: 'site/dist/libs/',
+          src: ['dist/**']
+        }]
+      }
+    },
+    
     'gh-pages': {
       'gh-pages': {
         options: {
@@ -64,10 +75,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-gh-pages');
 
   grunt.registerTask('test', ['jshint', 'qunit']);
   grunt.registerTask('default', ['concat', 'qunit', 'uglify']);
-  grunt.registerTask('publish', ['concat', 'qunit', 'uglify', 'gh-pages']);
+  grunt.registerTask('publish', ['concat', 'qunit', 'uglify', 'copy:sitelibs', 'gh-pages']);
 
 };
