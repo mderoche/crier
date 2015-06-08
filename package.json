@@ -1,6 +1,6 @@
 {
   "name": "crierjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/crier.min.js",
   "description": "Pub/Sub pattern implementation for JavaScript",
   "repository": {
