@@ -1,5 +1,5 @@
 {
-  "name": "crierjs",
+  "name": "crier",
   "version": "1.0.0",
   "main": "dist/crier.min.js",
   "ignore": [

@@ -1,5 +1,5 @@
 {
-  "name": "criers",
+  "name": "crier",
   "version": "1.0.0",
   "main": "dist/crier.min.js",
   "description": "Pub/Sub pattern implementation for JavaScript",

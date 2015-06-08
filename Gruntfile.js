@@ -67,7 +67,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-gh-pages');
 
   grunt.registerTask('test', ['jshint', 'qunit']);
-  grunt.registerTask('default', ['concat', 'jshint', 'qunit', 'uglify']);
+  grunt.registerTask('default', ['concat', 'qunit', 'uglify']);
   grunt.registerTask('publish', ['concat', 'qunit', 'uglify', 'gh-pages']);
 
 };
