@@ -1,18 +1,39 @@
 <div class="row">
   <div class="col-md-12">
     <h2>What?</h2>
-    <section>
-      <strong>CrierJS</strong> is a non-convoluded publish-subscription system for vanilla JavaScript and NodeJS.  <strong>Subscribers</strong> hook into a channel
+    <section class="justify">
+      <strong>CrierJS</strong> is a non-convoluded publish-subscription system for JavaScript and NodeJS.  <strong>Subscribers</strong> hook into a channel
       and wait for any sort of data to get thrown onto it; <strong>publishers</strong> throw data onto channels that subscribers are (maybe) watching.  With this model,
-      the publishers and subscribers aren't friends&mdash;in fact, they don't even know that the other exists (promoting <em>loose coupling</em> and <em>scalability</em>).
+      the publishers and subscribers aren't friends, relatives, or even acquaintances&mdash;in fact, they don't even know that the other exists (promoting <em>loose coupling</em> and <em>scalability</em>).
+      There are <strong>no dependencies</strong> and it works (tested) in Node, all popular browsers, and IE8.
     </section>
 
     <h2>Download</h2>
     <section>
-      
+      <div class="downloads row">
+        <div class="col-md-4">
+          <div class="downloads-title">URL</div>
+          <div class="downloads-link">
+            <button type="button" class="btn btn-success"><strong>Development</strong> (10kb)</button>
+            <button type="button" class="btn btn-success"><strong>Minified</strong> (1.4kb)</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="downloads-title"><img src="images/bower.png" /> Bower</div>
+          <div class="downloads-link">
+            <pre>bower install crierjs</pre>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="downloads-title"><img src="images/npm.png" />NPM</div>
+          <div class="downloads-link">
+            <pre>npm install crierjs</pre>
+          </div>
+        </div>
+      </div>
     </section>
     
-    <h2>Quick Glance</h2>
+    <h2>Synopsis</h2>
     <section>
       <div hljs>Crier.sub('channel-1', function (ch, a, b) {
   console.log('channel ' + ch + ' got data ', a, b);
@@ -25,11 +46,16 @@ Crier.pub('channel-1', 2015, 'foo');
     
     <h2>Methods</h2>
     <section>
+      <div class="alert alert-info" role="alert">
+        <strong>NOTE:</strong> All methods that use <code>channels</code> can use this parameter as a string to
+        select a single channel, or a regular expression to select multiple channels.
+      </div>
+    
       <div class="method" ng-repeat="method in methods">
         <h4><samp><strong>{{method.signature}}</strong></samp></h4>
         <div>
           <div class="description" ng-bind-html="method.description"></div>
-          <table class="table table-condensed params">
+          <table ng-if="method.params" class="table table-condensed params">
             <tr ng-repeat="param in method.params">
               <td class="params-name"><kbd>{{param.name}}</kbd></td>
               <td class="params-types">
@@ -46,20 +72,67 @@ Crier.pub('channel-1', 2015, 'foo');
         </div>
       </div>
     </section>
-      
-    <!--
-      <p>
-        Subscribes to the given <code>channels</code> with a handler function <code>fn</code>.  It's aliased with an optional <code>id</code>.
-      </p>
-      
-      <h4>.pub(channels, data1, data2, ..., dataN)</h4>
-      <p>
-        Publishes a set of data to the given <code>channels</code>.
-      </p>
-      
-      <h4>.unsub(channels, fnId)</h4>
-      <p>
-        Unsubscribes the given subscriber as indicated by the handler function or alias id as <code>fnId</code>.
-      </p>-->
+    
+    <h2>Examples</h2>
+    <section class="examples">
+      <h4 class="title">Basic Usage</h4>
+      <div hljs>// subscribe to channel ch-1
+Crier.sub('ch-1', function (ch, a, b, c, d, e) {
+  console.log('channel: ', ch);
+  console.log('data:    ', a, b, c, d, e);
+}, 'sub-1');
+
+
+// publish a bunch of stuff to channel ch-1
+Crier.pub('ch-1', 7, 'test', { a: 4 }, [5, 2], true);
+
+// list subscribers
+console.log(Crier.subs());
+
+// list channels
+console.log(Crier.channelsAsArray());
+
+// unsubscribe sub-1 from ch-1
+Crier.unsub('ch-1', 'sub-1');</div>
+
+      <h4 class="title">Publish and Subscribe to Multiple Channels</h4>
+      <div hljs>// subscribe to ch-1
+Crier.sub('ch-1', function (ch, data) {
+  console.log(data);
+});
+
+// subscribe to ch-2
+Crier.sub('ch-2', function (ch, data) {
+  console.log(data);
+});
+
+// subscribes to both ch-1 and ch-2
+Crier.sub(/ch-(.*)/, function (ch, data) {
+  console.log(data);
+});
+
+// publish to both ch-1 and ch-2
+Crier.pub(/ch-(.*)/, 'some extremely interesting data');</div>
+
+      <h4 class="title">Create a New Crier Instance</h4>
+      <div hljs>// creates a new, encapsulated instance of Crier
+var c = Crier.newInstance();
+
+
+c.sub('ch', function (d) {
+  console.log(d);
+});
+
+Crier.sub('ch', function (d) {
+  console.log(d);
+});
+
+// picked up by c.sub(), but NOT by Crier.sub()
+c.pub('ch', 'epic data');
+
+// picked up by Crier.sub(), but NOT by c.sub()
+Crier.pub('ch', 'epic data');
+      </div>
+    </section>
   </div>
 </div>

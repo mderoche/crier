@@ -68,12 +68,10 @@ angular.module('siteApp')
       }]
     }, {
       signature:   '.channelsAsArray()',
-      description: 'Returns all known channels as an array.',
-      params: [{
-        name:        'channels',
-        types:       ['string', 'regexp'],
-        description: 'Channels to destroy.  A blank value will destroy all channels.'
-      }]
+      description: 'Returns all known channels as an array.'
+    }, {
+      signature: '.newInstance()',
+      description: 'Creates a new, encapsulated instance of <samp>Crier</samp>'
     }];
     
     angular.forEach($scope.methods, function (method) {

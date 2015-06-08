@@ -52,17 +52,10 @@ module.exports = function(grunt) {
     'gh-pages': {
       'gh-pages': {
         options: {
-          base: 'dist'
-        },
-        src: ['**']
-      },
-      
-      'gh-pages': {
-        options: {
           base: 'site/dist'
         },
         src: ['**']
-      }
+      },
     }
   });
 
