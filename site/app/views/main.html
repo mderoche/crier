@@ -21,13 +21,13 @@
         <div class="col-md-4">
           <div class="downloads-title"><img src="images/bower.png" /> Bower</div>
           <div class="downloads-link">
-            <pre>bower install crier</pre>
+            <pre>bower install crierjs</pre>
           </div>
         </div>
         <div class="col-md-4">
           <div class="downloads-title"><img src="images/npm.png" />NPM</div>
           <div class="downloads-link">
-            <pre>npm install crier</pre>
+            <pre>npm install crierjs</pre>
           </div>
         </div>
       </div>
@@ -131,8 +131,17 @@ Crier.sub('ch', function (d) {
 c.pub('ch', 'epic data');
 
 // picked up by Crier.sub(), but NOT by c.sub()
-Crier.pub('ch', 'epic data');
-      </div>
+Crier.pub('ch', 'epic data');</div>
+
+      <h4 class="title">NodeJS Usage</h4>
+      <div hljs>var Crier = require('crierjs');
+
+
+Crier.sub('testing', function (a, b) {
+  console.log(a, b);
+});
+
+Crier.pub('testing', 3.14);</div>
     </section>
   </div>
 </div>
