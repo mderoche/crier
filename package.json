@@ -1,8 +1,8 @@
 {
-  "name": "crier",
-  "version": "0.0.0",
+  "name": "criers",
+  "version": "1.0.0",
   "main": "dist/crier.min.js",
-  "description": "Pub/sub pattern for JavaScript",
+  "description": "Pub/Sub pattern implementation for JavaScript",
   "repository": {
     "type": "git",
     "url": "git://github.com/mderoche/crier.git"
