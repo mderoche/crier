@@ -1,3 +1,4 @@
-.grunt
+.grunt/
+.git/
 site/
 test/
