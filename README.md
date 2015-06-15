@@ -1,29 +1,17 @@
 # Crier
 
-Coming soon.
+CrierJS is a non-convoluded publish-subscription system for JavaScript and NodeJS. Subscribers hook into a channel and wait for any sort of data to get thrown onto it; publishers throw data onto channels that subscribers are (maybe) watching. With this model, the publishers and subscribers aren't friends, relatives, or even acquaintances—in fact, they don't even know that the other exists (promoting loose coupling and scalability). There are no dependencies and it works (tested) in Node, all popular browsers, and IE8.
 
+# Synopsis
 
+``` javascript
+Crier.sub('channel-1', function (ch, a, b) {
+  console.log('channel ' + ch + ' got data ', a, b);
+});
 
-# Usage
-
-```javascript
-// subscribe to channel-1 as sub-1
-Crier.sub('channel-1', function (channel, a, b, c) {
-  console.log(a, b, c);
-}, 'sub-1');
-
-// publish to channel-1
-Crier.pub('channel-1', 1, 2, 2);
-// "1, 2, 3"
-
-// subscribe to channel-2 as anonymous
-Crier.sub('channel-2', function (channel, data) {
-  console.log(data);
-})
-
-// publish to anything that matches channel-(.*)
-Crier.pub(/channel-/, { a: 5 });
-
-// unsubscribe sub-1 from channel-1
-Crier.unsub('channel-1', 'sub-1')
+Crier.pub('channel-1', 2015, 'foo');
+// "channel channel-1 got data 2015 foo"
 ```
+
+# More Information
+http://mderoche.github.io/crier/
