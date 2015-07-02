@@ -53,20 +53,18 @@ module.exports = function(grunt) {
       sitelibs: {
         files: [{
           expand: true,
-          cwd: '.',
+          cwd: 'dist/',
           dest: 'site/dist/libs/',
-          src: ['dist/**']
+          src: ['**']
         }]
       }
     },
     
     'gh-pages': {
-      'gh-pages': {
-        options: {
-          base: 'site/dist'
-        },
-        src: ['**']
+      options: {
+        base: 'site/dist/'
       },
+      src: ['**']
     }
   });
 
